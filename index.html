@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nice Bolos — Cardápio com Navegação</title>
+
+  <!-- Fontes do Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Arquivo de estilos (CSS) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ---------- BARRA DE NAVEGAÇÃO FIXA ---------- -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
+      <div class="nav-brand">Nice Bolos</div>
+      <div class="nav-links" id="nav-links">
+        <button class="nav-btn" data-target="#bolos">Bolos</button>
+        <button class="nav-btn" data-target="#salgados">Salgados</button>
+        <button class="nav-btn" data-target="#doces">Doces</button>
+        <button class="nav-btn" data-target="#bebidas">Bebidas</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <header>
+      <div class="brand">● Cardápio completo</div>
+      <h1>O que você quer pedir hoje?</h1>
+      <p>Use os botões no topo para pular direto para a categoria que você quer — ou role a página normalmente.</p>
+    </header>
+
+    <!-- ---------- SEÇÕES (alvo dos botões) ---------- -->
+    <section class="menu-section" id="bolos">
+      <h2>Bolos</h2>
+      <p class="section-sub">Feitos sob encomenda, com no mínimo 1 dia de antecedência.</p>
+      <div class="menu-list" data-menu></div>
+    </section>
+
+    <section class="menu-section" id="salgados">
+      <h2>Salgados</h2>
+      <p class="section-sub">Pedido mínimo de 20 unidades por sabor.</p>
+      <div class="menu-list" data-menu></div>
+    </section>
+
+    <section class="menu-section" id="doces">
+      <h2>Doces</h2>
+      <p class="section-sub">Brigadeiros, beijinhos e docinhos para festas.</p>
+      <div class="menu-list" data-menu></div>
+    </section>
+
+    <section class="menu-section" id="bebidas">
+      <h2>Bebidas</h2>
+      <p class="section-sub">Sucos e refrigerantes para acompanhar o pedido.</p>
+      <div class="menu-list" data-menu></div>
+    </section>
+
+    <footer class="dev-note">
+      Segundo exemplo para fins de estudo/comparação. A diferença principal deste para o primeiro protótipo é a <strong>barra de navegação fixa</strong> no topo, que rola a página até cada seção usando âncoras (<code>#bolos</code>, <code>#salgados</code> etc.) e destaca o botão da seção atual comparando a posição de rolagem com a posição de cada seção na página. O carrinho aqui abre como uma gaveta lateral (<em>drawer</em>) em vez de ficar fixo do lado, só pra mostrar outra forma de organizar a mesma funcionalidade. Antes de usar de verdade, troque o número em <code>NUMERO_LOJA</code> (no arquivo <code>script.js</code>) pelo WhatsApp real da loja.
+    </footer>
+
+  </div>
+
+  <!-- ---------- BOTÃO FLUTUANTE + GAVETA DO CARRINHO ---------- -->
+  <button class="cart-fab" id="cart-fab" onclick="abrirCarrinho()">
+    🛒 Ver pedido <span class="badge" id="fab-count">0</span>
+  </button>
+
+  <div class="overlay" id="overlay" onclick="fecharCarrinho()"></div>
+
+  <div class="cart-drawer" id="cart-drawer">
+    <button class="close-drawer" onclick="fecharCarrinho()">✕</button>
+    <h2>Seu pedido</h2>
+
+    <div id="cart-empty" class="cart-empty">Nenhum item adicionado ainda</div>
+    <div id="cart-items" class="cart-items"></div>
+
+    <div id="cart-total" class="cart-total" style="display:none;">
+      <span>Total</span>
+      <span id="total-value">R$ 0,00</span>
+    </div>
+
+    <div class="field">
+      <label for="nome-cliente">Seu nome</label>
+      <input type="text" id="nome-cliente" placeholder="Ex: Maria Silva">
+    </div>
+    <div class="two-col">
+      <div class="field">
+        <label for="data-entrega">Data</label>
+        <input type="date" id="data-entrega">
+      </div>
+      <div class="field">
+        <label for="hora-entrega">Horário</label>
+        <input type="time" id="hora-entrega">
+      </div>
+    </div>
+
+    <button class="send-btn" id="send-btn" onclick="enviarPedido()">Enviar pelo WhatsApp</button>
+  </div>
+
+  <!-- Arquivo de lógica (JavaScript) — fica no final para carregar depois do HTML -->
+  <script src="script.js"></script>
+
+</body>
+</html>
